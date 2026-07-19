@@ -23,12 +23,19 @@ jobs:
 
     - name: Generate Debug Keystore
       run: |
+        rm -f debug.keystore
         keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "C=US, O=Android, CN=Android Debug"
+
+    - name: Create .env
+      run: touch .env
+
+    - name: Accept Android SDK Licenses
+      run: |
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
     - name: Build with Gradle
       run: |
-        sed -i -e 's/\r$//' gradlew
-        chmod +x gradlew
+        gradle wrapper --gradle-version 8.9
         ./gradlew assembleDebug --stacktrace
 
     - name: Upload APK Artifact
