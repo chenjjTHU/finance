@@ -24,8 +24,10 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
 
-    - name: Make gradlew executable
-      run: chmod +x gradlew
+    - name: Fix line endings and make gradlew executable
+      run: |
+        sed -i -e 's/\r$//' gradlew
+        chmod +x gradlew
 
     - name: Build with Gradle
       run: ./gradlew assembleDebug
