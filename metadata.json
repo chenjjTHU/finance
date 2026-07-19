@@ -1,0 +1,6 @@
+{
+  "name": "随手记账",
+  "description": "一款简洁、支持离线的个人每日财务收支记账与可视化应用，支持数据导出为 Excel / CSV 格式进行深度分析。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
